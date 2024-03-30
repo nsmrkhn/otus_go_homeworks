@@ -1,7 +1,5 @@
 module github.com/nsmrkhn/hw01_hello_otus
 
-go 1.22
+go 1.21
 
-toolchain go1.22.0
-
-require golang.org/x/example v0.0.0-20230725233554-29ffb748dd55
+require golang.org/x/example v0.0.0-20170904185048-46695d81d1fa
