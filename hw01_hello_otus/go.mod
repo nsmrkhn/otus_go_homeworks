@@ -1,4 +1,4 @@
-module github.com/nsmrkhn/hw01_hello_otus
+module github.com/nsmrkhn/otus_go_homeworks/hw01_hello_otus
 
 go 1.21
 
