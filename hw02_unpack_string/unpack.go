@@ -1,4 +1,4 @@
-package main
+package hw02unpackstring
 
 import (
 	"errors"
@@ -27,10 +27,8 @@ func Unpack(s string) (string, error) {
 				return "", err
 			}
 
-			if multiplier == 0 {
-				resultString = resultString[:len(resultString)-1]
-			} else {
-				resultString = resultString[:len(resultString)-1]
+			resultString = resultString[:len(resultString)-1]
+			if multiplier != 0 {
 				for j := 0; j < multiplier; j++ {
 					resultString += string(runesArray[i-1])
 				}
