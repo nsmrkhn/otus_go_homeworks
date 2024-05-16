@@ -6,6 +6,7 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
@@ -50,7 +51,43 @@ func TestCache(t *testing.T) {
 	})
 
 	t.Run("purge logic", func(t *testing.T) {
-		// Write me
+		c := NewCache(3)
+
+		c.Set("one", 1)
+		c.Set("two", 2)
+		c.Set("three", 3)
+		c.Set("four", 4)
+
+		value, ok := c.Get("one")
+		require.False(t, ok)
+		require.Nil(t, value)
+
+		value, ok = c.Get("four")
+		require.True(t, ok)
+		assert.Equal(t, value, 4)
+	})
+
+	t.Run("purge oldest elem", func(t *testing.T) {
+		c := NewCache(3)
+
+		c.Set("one", 1)
+		c.Set("two", 2)
+		c.Set("three", 3)
+
+		c.Set("one", 11)
+		c.Set("three", 33)
+
+		c.Set("four", 4)
+		value, ok := c.Get("two")
+		require.False(t, ok)
+		require.Nil(t, value)
+
+		_, ok = c.Get("one")
+		require.True(t, ok)
+		_, ok = c.Get("three")
+		require.True(t, ok)
+		_, ok = c.Get("four")
+		require.True(t, ok)
 	})
 }
 
