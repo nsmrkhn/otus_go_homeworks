@@ -65,6 +65,11 @@ func TestCache(t *testing.T) {
 		value, ok = c.Get("four")
 		require.True(t, ok)
 		assert.Equal(t, value, 4)
+
+		_, ok = c.Get("two")
+		require.True(t, ok)
+		_, ok = c.Get("three")
+		require.True(t, ok)
 	})
 
 	t.Run("purge oldest elem", func(t *testing.T) {
